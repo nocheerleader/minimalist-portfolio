@@ -1,101 +1,167 @@
-import Image from "next/image";
+'use client'
+
+import { default as NextImage } from 'next/image'
+import Link from 'next/link'
+import { useState } from 'react'
+import { Instagram, Youtube, Facebook, Menu, X } from 'lucide-react'
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [imageError, setImageError] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  return (
+    <div className="min-h-screen bg-white flex flex-col">
+    {/* Navigation */}
+    <nav className="container mx-auto px-4 py-6 relative">
+      <div className="max-w-6xl mx-auto flex items-center justify-between">
+        {/* Mobile Menu Button */}
+        <button 
+          className="lg:hidden p-2 text-gray-400 hover:text-gray-600"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+
+        {/* Desktop Navigation */}
+        <div className="hidden lg:flex items-center space-x-8">
+          <Link 
+            href="/" 
+            className="text-gray-400 hover:text-gray-600 text-xs font-light transition-colors pt-0.5"
           >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            HOME
+          </Link>
+          <Link 
+            href="/art" 
+            className="text-gray-400 hover:text-gray-600 text-xs font-light transition-colors pt-0.5"
           >
-            Read our docs
-          </a>
+            ART
+          </Link>
+          <Link 
+            href="/about" 
+            className="text-gray-400 hover:text-gray-600 text-xs font-light transition-colors pt-0.5"
+          >
+            ABOUT ME
+          </Link>
+          <Link 
+            href="/events" 
+            className="text-gray-400 hover:text-gray-600 text-xs font-light transition-colors pt-0.5"
+          >
+            EVENTS
+          </Link>
+          <Link 
+            href="/contact" 
+            className="text-gray-400 hover:text-gray-600 text-xs font-light transition-colors pt-0.5"
+          >
+            CONTACT 
+          </Link>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link 
+          href="/rev-art-show" 
+          className="text-gray-400 hover:text-gray-600 text-xs font-light transition-colors pt-0.5"
         >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          AI ART
+        </Link>
+      </div>
+
+      {/* Mobile Navigation Menu */}
+      {isMenuOpen && (
+        <div className="lg:hidden absolute top-full left-0 right-0 bg-white shadow-lg z-50 py-4">
+          <div className="flex flex-col space-y-4 px-4">
+            <Link 
+              href="/" 
+              className="text-gray-400 hover:text-gray-600 text-xs font-light transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              HOME
+            </Link>
+            <Link 
+              href="/art" 
+              className="text-gray-400 hover:text-gray-600 text-xs font-light transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              ART
+            </Link>
+            <Link 
+              href="/about" 
+              className="text-gray-400 hover:text-gray-600 text-xs font-light transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              ABOUT ME
+            </Link>
+            <Link 
+              href="/events" 
+              className="text-gray-400 hover:text-gray-600 text-xs font-light transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              EVENTS
+            </Link>
+            <Link 
+              href="/contact" 
+              className="text-gray-400 hover:text-gray-600 text-xs font-light transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              CONTACT 
+            </Link>
+          </div>
+        </div>
+      )}
+    </nav>
+
+    {/* Logo */}
+    <div className="flex justify-center -mt-8 mb-8">
+      <div className="w-24 h-24 md:w-32 md:h-32 bg-[#FF5722] rounded-full flex items-center justify-center">
+        <span className="text-white text-3xl md:text-4xl font-bold">td</span>
+      </div>
     </div>
+
+    {/* Hero Section */}
+    <main className="container mx-auto px-4 mt-8 md:mt-12 mb-12 md:mb-20">
+      <div className="max-w-6xl mx-auto">
+        <NextImage
+          src="/img1.jpeg"
+          width={1920}
+          height={1080}
+          alt="3D illustration of a character in a sunny urban setting"
+          className="w-full rounded-lg object-cover"
+          priority
+          onError={() => setImageError(true)}
+        />
+      </div>
+    </main>
+
+    {/* Description */}
+    <div className="container mx-auto px-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="space-y-4 text-gray-400 text-sm max-w-2xl mx-auto md:ml-[40%]">
+          <p>Hi! I'm Taher Dhanerawala!</p>
+          <p>Professional AI artist & AI champion</p>
+          <p>Early adopter of AI. AI runs in my blood</p>
+        </div>
+      </div>
+    </div>
+
+    {/* Footer */}
+    <footer className="mt-auto pt-12 md:pt-20 pb-8">
+      <div className="container mx-auto px-4">
+        <div className="flex justify-center space-x-6 mb-4">
+          <Link href="https://instagram.com" className="p-2 rounded-full bg-[#FF5722] hover:bg-[#FF5722]/90 transition-colors">
+            <Instagram className="w-5 h-5 text-white" />
+            <span className="sr-only">Instagram</span>
+          </Link>
+          <Link href="https://youtube.com" className="p-2 rounded-full bg-[#FF5722] hover:bg-[#FF5722]/90 transition-colors">
+            <Youtube className="w-5 h-5 text-white" />
+            <span className="sr-only">YouTube</span>
+          </Link>
+          <Link href="https://facebook.com" className="p-2 rounded-full bg-[#FF5722] hover:bg-[#FF5722]/90 transition-colors">
+            <Facebook className="w-5 h-5 text-white" />
+            <span className="sr-only">Facebook</span>
+          </Link>
+        </div>
+        <div className="text-center text-gray-400 text-xs">
+          © Taher Dhanerawala 2024
+        </div>
+      </div>
+    </footer>
+  </div>
   );
 }
